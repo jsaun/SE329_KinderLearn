@@ -6,14 +6,39 @@ import com.se.kinderlearn.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.Window;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
+	Typeface	roboto;
+	TextView	welcome;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+
+		setFontTypes();
+		welcome = (TextView) findViewById(R.id.mainWelcomeText);
+		this.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				setTypeFace(roboto, "#ffffff", 14, welcome);
+
+			}
+		});
+	}
+
+	private void setFontTypes() {
+		roboto = Typeface
+				.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
+
 	}
 
 	@Override
@@ -23,4 +48,18 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	public static void setTypeFace(Typeface tf, String color, int size,
+			TextView view) {
+		view.setTypeface(tf);
+		if (size == 0) {
+			view.setTextSize(14);
+		} else {
+			view.setTextSize(size);
+		}
+		if (color != null) {
+			view.setTextColor(Color.parseColor(color));
+		}
+		view.setGravity(Gravity.CENTER);
+
+	}
 }
