@@ -20,4 +20,63 @@
         android:text="Ready?"
         android:textColor="#ffffff" />
 
+    <TextView
+        android:id="@+id/num_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/game_countdown"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/game_countdown"
+        android:text="NumOne"
+        android:textColor="#ffffff"
+        android:textSize="32dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/num_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/game_countdown"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/game_countdown"
+        android:text="NumTwo"
+        android:textColor="#ffffff"
+        android:textSize="32dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/operator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/game_countdown"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="32dp"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/user_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="75dp"
+        android:gravity="center"
+        android:hint="Answer:"
+        android:imeOptions="actionGo"
+        android:inputType="numberSigned"
+        android:textColor="#ffffff"
+        android:textSize="32dp"
+        android:visibility="invisible" />
+
 </RelativeLayout>
