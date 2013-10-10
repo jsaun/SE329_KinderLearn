@@ -28,7 +28,6 @@ public class GameActivity extends Activity {
 
 	int			usersScore;
 	TextView	answerDetail;
-	boolean		waiting;
 	GameThread	game;
 
 	@Override
@@ -192,7 +191,6 @@ public class GameActivity extends Activity {
 						handled = true;
 					}
 					userAnswer.setText("");
-					waiting = false;
 					return handled;
 				}
 			});
