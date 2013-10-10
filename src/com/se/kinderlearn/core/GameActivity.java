@@ -120,7 +120,6 @@ public class GameActivity extends Activity {
 
 		@Override
 		public void run() {
-			waiting = true;
 			Random oneRand = new Random();
 			int one = oneRand.nextInt() % 100;
 			numOne.setText("" + one);
