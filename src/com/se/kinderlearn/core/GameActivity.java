@@ -74,7 +74,6 @@ public class GameActivity extends Activity {
 	private void setWinStatement() {
 		this.answerDetail.post(new Runnable() {
 
-			@Override
 			public void run() {
 				answerDetail.setVisibility(View.VISIBLE);
 				answerDetail.setText("You Won!");
@@ -146,7 +145,6 @@ public class GameActivity extends Activity {
 			final int passAnswer = answer;
 			userAnswer.setOnEditorActionListener(new OnEditorActionListener() {
 
-				@Override
 				public boolean onEditorAction(TextView v, int actionId,
 						KeyEvent event) {
 					boolean handled = false;
@@ -159,7 +157,6 @@ public class GameActivity extends Activity {
 							answerDetail.setVisibility(View.VISIBLE);
 							answerDetail.post(new Runnable() {
 
-								@Override
 								public void run() {
 									answerDetail.setText("Enter a number");
 								}
@@ -170,7 +167,6 @@ public class GameActivity extends Activity {
 							answerDetail.setVisibility(View.VISIBLE);
 							answerDetail.post(new Runnable() {
 
-								@Override
 								public void run() {
 									answerDetail.setText("Correct! Score = "
 											+ usersScore);
@@ -181,7 +177,6 @@ public class GameActivity extends Activity {
 							answerDetail.setVisibility(View.VISIBLE);
 							answerDetail.post(new Runnable() {
 
-								@Override
 								public void run() {
 									answerDetail.setText("Incorrect! Score = "
 											+ usersScore);

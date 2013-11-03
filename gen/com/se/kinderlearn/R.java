@@ -22,34 +22,45 @@ public final class R {
     }
     public static final class drawable {
         public static final int expander_open_holo_dark=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int planet_earth_in_space=0x7f020002;
+        public static final int ic_action_search=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int planet_earth_in_space=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000c;
-        public static final int answer_detail=0x7f080006;
-        public static final int game_countdown=0x7f080000;
-        public static final int mainWelcomeText=0x7f08000a;
-        public static final int mainWelcomeTextTwo=0x7f08000b;
-        public static final int main_rules_text=0x7f080008;
-        public static final int main_start_game=0x7f080009;
-        public static final int new_question=0x7f080005;
-        public static final int num_one=0x7f080001;
-        public static final int num_two=0x7f080002;
-        public static final int operator=0x7f080003;
-        public static final int pager=0x7f080007;
-        public static final int user_answer=0x7f080004;
+        public static final int action_settings=0x7f080014;
+        public static final int answer_detail=0x7f08000f;
+        public static final int fifth_grade=0x7f080007;
+        public static final int first_grade=0x7f080003;
+        public static final int fourth_grade=0x7f080006;
+        public static final int game_countdown=0x7f080009;
+        public static final int kindergarten=0x7f080002;
+        public static final int main_start_game=0x7f080010;
+        public static final int main_start_game_1=0x7f080000;
+        public static final int menu_settings=0x7f080013;
+        public static final int new_question=0x7f08000e;
+        public static final int num_one=0x7f08000a;
+        public static final int num_two=0x7f08000b;
+        public static final int operator=0x7f08000c;
+        public static final int options=0x7f080012;
+        public static final int second_grade=0x7f080004;
+        public static final int sixth_grade=0x7f080008;
+        public static final int start_game_2=0x7f080001;
+        public static final int stats=0x7f080011;
+        public static final int third_grade=0x7f080005;
+        public static final int user_answer=0x7f08000d;
     }
     public static final class layout {
-        public static final int activity_game=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int fragment_rules=0x7f030002;
-        public static final int fragment_start_game=0x7f030003;
-        public static final int fragment_welcome=0x7f030004;
+        public static final int activity_choose_game=0x7f030000;
+        public static final int activity_choose_grade=0x7f030001;
+        public static final int activity_game=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int stats=0x7f030004;
     }
     public static final class menu {
-        public static final int game=0x7f070000;
-        public static final int main=0x7f070001;
+        public static final int activity_choose_game=0x7f070000;
+        public static final int activity_choose_grade=0x7f070001;
+        public static final int game=0x7f070002;
+        public static final int main=0x7f070003;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -57,7 +68,10 @@ public final class R {
         public static final int demo_collection=0x7f050005;
         public static final int demo_external_activity=0x7f050004;
         public static final int hello_world=0x7f050002;
+        public static final int menu_settings=0x7f050007;
         public static final int section_text=0x7f050003;
+        public static final int title_activity_choose_game=0x7f050009;
+        public static final int title_activity_choose_grade=0x7f050008;
         public static final int title_activity_game=0x7f050006;
     }
     public static final class style {

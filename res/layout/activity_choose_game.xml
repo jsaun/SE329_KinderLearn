@@ -3,45 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/planet_earth_in_space"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity"
-    android:background="@drawable/planet_earth_in_space" >
+    tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/main_start_game"
+        android:id="@+id/main_start_game_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="74dp"
         android:background="#25000000"
-        android:text="Play"
-        android:onClick="startChooseGrade"
+        android:onClick="startGame1"
+        android:text="Start Game 1"
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/stats"
+        android:id="@+id/start_game_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/main_start_game"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
+        android:layout_alignLeft="@+id/main_start_game_1"
+        android:layout_below="@+id/main_start_game_1"
+        android:layout_marginTop="52dp"
         android:background="#25000000"
-        android:text="Stats"
+        android:onClick="startGame2"
+        android:text="Start Game 2"
         android:textColor="#ffffff" />
-    
-    <Button
-        android:id="@+id/options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stats"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
-        android:background="#25000000"
-        android:text="Options"
-        android:textColor="#ffffff" />
-        
+
 </RelativeLayout>
