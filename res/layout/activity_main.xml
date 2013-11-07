@@ -31,6 +31,7 @@
         android:layout_marginTop="33dp"
         android:background="#25000000"
         android:text="Stats"
+        android:onClick="startStats"
         android:textColor="#ffffff" />
     
     <Button
@@ -42,6 +43,7 @@
         android:layout_marginTop="33dp"
         android:background="#25000000"
         android:text="Options"
+        android:onClick="startOptions"
         android:textColor="#ffffff" />
         
 </RelativeLayout>

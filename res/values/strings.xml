@@ -12,5 +12,8 @@
     <string name="title_activity_choose_grade">ChooseGrade</string>
     <string name="title_activity_choose_game">ChooseGameActivity</string>
     <string name="title_activity_space_invaders">SpaceInvadersActivity</string>
+    <string name="title_activity_stats">StatsActivity</string>
+    <string name="title_activity_options">OptionsActivity</string>
+
 
 </resources>

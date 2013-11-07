@@ -57,7 +57,9 @@ public final class R {
         public static final int activity_game=0x7f030002;
         public static final int activity_main=0x7f030003;
         public static final int activity_space_invaders=0x7f030004;
-        public static final int stats=0x7f030005;
+        public static final int activity_options=0x7f030004;
+        public static final int activity_stats=0x7f030005;
+        public static final int stats=0x7f030006;
     }
     public static final class menu {
         public static final int activity_choose_game=0x7f070000;
@@ -65,6 +67,8 @@ public final class R {
         public static final int game=0x7f070002;
         public static final int main=0x7f070003;
         public static final int space_invaders=0x7f070004;
+        public static final int activity_options=0x7f070002;
+        public static final int activity_stats=0x7f070003;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -78,6 +82,8 @@ public final class R {
         public static final int title_activity_choose_grade=0x7f050008;
         public static final int title_activity_game=0x7f050006;
         public static final int title_activity_space_invaders=0x7f05000a;
+        public static final int title_activity_options=0x7f05000b;
+        public static final int title_activity_stats=0x7f05000a;
     }
     public static final class style {
         /** 
