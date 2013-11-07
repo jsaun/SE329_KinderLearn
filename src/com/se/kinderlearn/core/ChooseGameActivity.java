@@ -32,7 +32,7 @@ public class ChooseGameActivity extends Activity {
     }
     
     public void startGame2(View v){
-		Intent intent = new Intent(this, GameActivity.class);
+		Intent intent = new Intent(this, SpaceInvadersActivity.class);
 		startActivity(intent);
     }
 }
