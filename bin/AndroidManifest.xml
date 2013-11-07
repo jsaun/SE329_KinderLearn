@@ -27,7 +27,7 @@
             android:label="@string/title_activity_game" >
         </activity>
         <activity
-            android:name=".core.ChooseGradeActivity"
+            android:name="com.se.kinderlearn.core.ChooseGradeActivity"
             android:label="@string/title_activity_choose_grade" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,13 +36,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".core.ChooseGameActivity"
+            android:name="com.se.kinderlearn.core.ChooseGameActivity"
             android:label="@string/title_activity_choose_game" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.se.kinderlearn.core.SpaceInvadersActivity"
+            android:label="@string/title_activity_space_invaders" >
         </activity>
     </application>
 
