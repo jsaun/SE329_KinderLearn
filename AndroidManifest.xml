@@ -46,9 +46,7 @@
         </activity>
         <activity
             android:name="com.se.kinderlearn.core.SpaceInvadersActivity"
-            android:label="@string/title_activity_space_invaders" 
-            android:name=".core.StatsActivity"
-            android:label="@string/title_activity_stats" >
+            android:label="@string/title_activity_space_invaders">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,7 +54,7 @@
             </intent-filter>
         </activity>
 		<activity
-        <activityandroid:name=".core.StatsActivity"
+			android:name=".core.StatsActivity"
             android:label="@string/title_activity_stats" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
