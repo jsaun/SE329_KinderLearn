@@ -27,8 +27,7 @@ public class ChooseGradeActivity extends Activity {
         return true;
     }
     
-    public void startKindergarten(View v){
-		
+    public void startKindergarten(View v){	
 		intent.putExtra("grade","k");
 		startActivity(intent);
     }

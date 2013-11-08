@@ -18,6 +18,7 @@ public class SpaceInvadersActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_space_invaders);
 		myIntent = getIntent();
+        String grade = myIntent.getStringExtra("grade");
 	}
 
 	@Override

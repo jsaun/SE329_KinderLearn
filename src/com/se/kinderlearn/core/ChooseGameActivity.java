@@ -12,12 +12,14 @@ import android.view.View;
 
 public class ChooseGameActivity extends Activity {
 
+	private String grade;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_game);
         Intent intent= getIntent(); // gets the previously created intent
-        String grade = intent.getStringExtra("grade");
+        grade = intent.getStringExtra("grade");
     }
 
     @Override
@@ -28,11 +30,13 @@ public class ChooseGameActivity extends Activity {
     
     public void startGame1(View v){
 		Intent intent = new Intent(this, GameActivity.class);
+		intent.putExtra("grade",grade);
 		startActivity(intent);
     }
     
     public void startGame2(View v){
 		Intent intent = new Intent(this, SpaceInvadersActivity.class);
+		intent.putExtra("grade",grade);
 		startActivity(intent);
     }
 }
