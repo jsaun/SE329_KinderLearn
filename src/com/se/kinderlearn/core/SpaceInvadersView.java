@@ -20,7 +20,7 @@ import android.view.SurfaceView;
 import android.widget.TextView;
 
 public class SpaceInvadersView extends SurfaceView implements SurfaceHolder.Callback {
-
+boolean run;
 
 	public class SpaceInvadersThread extends Thread{		
 		private Bitmap backgroundImage;
@@ -34,7 +34,6 @@ public class SpaceInvadersView extends SurfaceView implements SurfaceHolder.Call
 		private long lastTime;
 		private Paint linePaint;
 		private int mode;
-		private boolean run;
 		private SurfaceHolder mSurfaceHolder;
 		private double X;
 		private double Y;
@@ -53,6 +52,7 @@ public class SpaceInvadersView extends SurfaceView implements SurfaceHolder.Call
 			linePaint.setARGB(255,0,255,0);
 			shipHeight = ship.getIntrinsicHeight();
 			shipWidth = ship.getIntrinsicWidth();
+			run = true;
 		}
 		
 		public void doStart(){
@@ -63,7 +63,7 @@ public class SpaceInvadersView extends SurfaceView implements SurfaceHolder.Call
 		}
 		
 		public void run(){
-			while (true) {
+			while (run) {
                 Canvas c = null;
                 try {
                     c = mSurfaceHolder.lockCanvas(null);
@@ -179,7 +179,13 @@ public class SpaceInvadersView extends SurfaceView implements SurfaceHolder.Call
 	}
 
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		// TODO Auto-generated method stub
+		try {
+			run = false;
+			thread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
