@@ -8,15 +8,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class SpaceInvadersView extends SurfaceView implements SurfaceHolder.Callback {
@@ -24,19 +27,12 @@ boolean run;
 
 	public class SpaceInvadersThread extends Thread{		
 		private Bitmap backgroundImage;
-		private int canvasHeight = 1;
-		private int canvasWidth = 1;
-		private Drawable ship;
+		private DrawableSprite ship;
 		private Drawable explosion;
 		private Handler mHandler;
-		private int shipHeight;
-		private int shipWidth;
 		private long lastTime;
 		private Paint linePaint;
-		private int mode;
 		private SurfaceHolder mSurfaceHolder;
-		private double X;
-		private double Y;
 		
 		public SpaceInvadersThread(SurfaceHolder surfaceHolder, Context context,
                 Handler handler){
@@ -44,27 +40,24 @@ boolean run;
 			mHandler = handler;
 			mContext = context;
 			Resources res = context.getResources();
-			ship = res.getDrawable(R.drawable.ship);
+			ship = new DrawableSprite(res.getDrawable(R.drawable.ship), 0, 0 );
 			explosion = res.getDrawable(R.drawable.explosion);
 			backgroundImage = BitmapFactory.decodeResource(res, R.drawable.planet_earth_in_space);
 			linePaint = new Paint();
 			linePaint.setAntiAlias(true);
 			linePaint.setARGB(255,0,255,0);
-			shipHeight = ship.getIntrinsicHeight();
-			shipWidth = ship.getIntrinsicWidth();
 			run = true;
 		}
 		
 		public void doStart(){
 			synchronized(mSurfaceHolder){
-				X = canvasWidth /2;
-				Y = canvasHeight - shipHeight;
 			}
 		}
 		
 		public void run(){
 			while (run) {
                 Canvas c = null;
+                ship.setPosition(getWidth()/2, getHeight() - ship.getSize().y / 2);
                 try {
                     c = mSurfaceHolder.lockCanvas(null);
                     synchronized (mSurfaceHolder) {
@@ -82,9 +75,8 @@ boolean run;
 		}
 		
 		public void doDraw(Canvas canvas){
-			canvas.drawBitmap(backgroundImage, 0, 0, null);
-			ship.setBounds(0, 0, shipWidth, shipHeight);
-			ship.draw(canvas);
+			canvas.drawBitmap(backgroundImage, null, new Rect(0,0, getWidth(), getHeight()), null);
+			ship.draw(canvas, getWidth(), getHeight());
 		}
 	}
 	
@@ -173,9 +165,7 @@ boolean run;
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
-		thread.start();
-		
-		
+        thread.start();
 	}
 
 	public void surfaceDestroyed(SurfaceHolder holder) {
@@ -187,6 +177,10 @@ boolean run;
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public SpaceInvadersThread getThread(){
+		return thread;
 	}
 
 }
