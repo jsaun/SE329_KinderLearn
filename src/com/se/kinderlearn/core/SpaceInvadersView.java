@@ -1,5 +1,7 @@
 package com.se.kinderlearn.core;
 
+import java.util.Calendar;
+
 import com.se.kinderlearn.R;
 
 import android.content.Context;
@@ -13,6 +15,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.Time;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.Surface;
@@ -34,6 +37,8 @@ boolean run;
 		private Paint linePaint;
 		private SurfaceHolder mSurfaceHolder;
 		
+		private Enemy testEnemy;
+		
 		public SpaceInvadersThread(SurfaceHolder surfaceHolder, Context context,
                 Handler handler){
 			mSurfaceHolder = surfaceHolder;
@@ -47,17 +52,22 @@ boolean run;
 			linePaint.setAntiAlias(true);
 			linePaint.setARGB(255,0,255,0);
 			run = true;
+			testEnemy = new Enemy(new Problem("4 + 5", 9), explosion, 100, 100, 5, getHeight());
 		}
 		
 		public void doStart(){
 			synchronized(mSurfaceHolder){
+				lastTime = Calendar.getInstance().getTimeInMillis();
 			}
 		}
 		
 		public void run(){
 			while (run) {
+				long time = Calendar.getInstance().getTimeInMillis() - lastTime;
+				lastTime = Calendar.getInstance().getTimeInMillis();
                 Canvas c = null;
                 ship.setPosition(getWidth()/2, getHeight() - ship.getSize().y / 2);
+                testEnemy.Update(time);
                 try {
                     c = mSurfaceHolder.lockCanvas(null);
                     synchronized (mSurfaceHolder) {
@@ -77,6 +87,7 @@ boolean run;
 		public void doDraw(Canvas canvas){
 			canvas.drawBitmap(backgroundImage, null, new Rect(0,0, getWidth(), getHeight()), null);
 			ship.draw(canvas, getWidth(), getHeight());
+			testEnemy.Draw(canvas, getWidth(), getHeight());
 		}
 	}
 	
