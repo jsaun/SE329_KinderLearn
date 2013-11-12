@@ -90,9 +90,11 @@ boolean run;
 		}
 		
 		public void doDraw(Canvas canvas){
+			if(run){
 			canvas.drawBitmap(backgroundImage, null, new Rect(0,0, getWidth(), getHeight()), null);
 			ship.draw(canvas, getWidth(), getHeight());
 			testEnemy.Draw(canvas, getWidth(), getHeight());
+			}
 		}
 		
 		public void TestEnemies(Point testPoint){
