@@ -30,16 +30,17 @@
 			android:textColor="#ffffff"
 			android:textSize="20sp"
 			android:textStyle="bold" />
-
+    
     <TextView
-			android:id="@+id/option_check"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
 			android:layout_below="@id/intro"
 			android:layout_centerHorizontal="true"
-			android:padding="15dp"
-			android:text="Options"
+			android:padding="10dp"
+			android:text="KinderLearn is a math game to help children learn math\n\nTo start game, first choose a Grade Level and then choose a game to start playing!\n\n"
 			android:textColor="#ffffff"
-			android:textSize="24sp"
-			android:textStyle="bold" />
-   </RelativeLayout>
+			android:textSize="18sp" />
+    
+    
+    
+    </RelativeLayout>

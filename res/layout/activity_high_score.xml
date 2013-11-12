@@ -32,14 +32,26 @@
 			android:textStyle="bold" />
 
     <TextView
-			android:id="@+id/option_check"
+			android:id="@+id/high_scores_title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@id/intro"
 			android:layout_centerHorizontal="true"
 			android:padding="15dp"
-			android:text="Options"
+			android:text="HIGH SCORES"
 			android:textColor="#ffffff"
 			android:textSize="24sp"
+			android:textStyle="bold" />
+
+	<TextView
+			android:id="@+id/high_scores_list"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/high_scores_title"
+			android:layout_centerHorizontal="true"
+			android:gravity="center"
+			android:padding="10dp"
+			android:textColor="#ffffff"
+			android:textSize="20sp"
 			android:textStyle="bold" />
    </RelativeLayout>
