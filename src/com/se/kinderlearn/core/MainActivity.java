@@ -1,5 +1,11 @@
 package com.se.kinderlearn.core;
 
+
+
+/**
+ * Changed the structure of the main activity class
+ * Using a alert dialog for user to choose game
+ */
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -74,6 +80,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	
+	/**
+	 * This method reads the user input grade level and start the game
+	 * @param grade
+	 *        the level of difficulty of the game
+	 *    
+	 */
 	private void startGame(int grade) {
 		
 		if (grade == 0){

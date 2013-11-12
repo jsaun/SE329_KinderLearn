@@ -28,16 +28,6 @@
         </activity>
         
         <activity
-            android:name="com.se.kinderlearn.core.ChooseGradeActivity"
-            android:label="@string/title_activity_choose_grade" >
-        </activity>
-        
-        <activity
-            android:name="com.se.kinderlearn.core.ChooseGameActivity"
-            android:label="@string/title_activity_choose_game" >
-        </activity>
-        
-        <activity
             android:name="com.se.kinderlearn.core.SpaceInvadersActivity"
             android:label="@string/title_activity_space_invaders">
         </activity>
@@ -56,6 +46,18 @@
 		<activity android:name="com.se.kinderlearn.core.HighScores" >
 		</activity>
 		
+		
+		<!-- not using these 2 activities -->
+        <activity
+            android:name="com.se.kinderlearn.core.ChooseGradeActivity"
+            android:label="@string/title_activity_choose_grade" >
+        </activity>
+        
+        <activity
+            android:name="com.se.kinderlearn.core.ChooseGameActivity"
+            android:label="@string/title_activity_choose_game" >
+        </activity>
+        
     </application>
 
 </manifest>
