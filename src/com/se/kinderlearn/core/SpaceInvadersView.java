@@ -1,5 +1,6 @@
 package com.se.kinderlearn.core;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.se.kinderlearn.R;
@@ -18,6 +19,7 @@ import android.os.Message;
 import android.text.format.Time;
 import android.util.AttributeSet;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
@@ -37,6 +39,7 @@ boolean run;
 		private Paint linePaint;
 		private SurfaceHolder mSurfaceHolder;
 		
+		private ArrayList<Enemy> enemies;
 		private Enemy testEnemy;
 		
 		public SpaceInvadersThread(SurfaceHolder surfaceHolder, Context context,
@@ -53,6 +56,8 @@ boolean run;
 			linePaint.setARGB(255,0,255,0);
 			run = true;
 			testEnemy = new Enemy(new Problem("4 + 5", 9), explosion, 100, 100, 5, getHeight());
+			enemies = new ArrayList<Enemy>();
+			enemies.add(testEnemy);
 		}
 		
 		public void doStart(){
@@ -88,6 +93,15 @@ boolean run;
 			canvas.drawBitmap(backgroundImage, null, new Rect(0,0, getWidth(), getHeight()), null);
 			ship.draw(canvas, getWidth(), getHeight());
 			testEnemy.Draw(canvas, getWidth(), getHeight());
+		}
+		
+		public void TestEnemies(Point testPoint){
+			for(int i = 0; i<enemies.size(); i++){
+				boolean kill = enemies.get(i).CheckClick(testPoint);
+				if(kill){
+					System.out.println("kill confirmed");
+				}
+			}
 		}
 	}
 	
@@ -188,6 +202,18 @@ boolean run;
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent e){
+		
+		if(e.getAction() == MotionEvent.ACTION_DOWN){
+			int x = (int) e.getX();
+			int y = (int) e.getY();
+			thread.TestEnemies(new Point(x, y));
+		}
+		
+		return true;
 	}
 	
 	public SpaceInvadersThread getThread(){

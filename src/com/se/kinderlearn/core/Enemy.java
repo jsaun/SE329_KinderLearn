@@ -3,6 +3,7 @@ package com.se.kinderlearn.core;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
@@ -44,6 +45,15 @@ public class Enemy {
 		if(ship.y > killBound){
 			//Player loses a life
 		}
+	}
+	
+	public boolean CheckClick(Point testPoint){
+		if(testPoint.x < x + width/2 && testPoint.x > x - width/2){
+			if(testPoint.y < y + height/2 && testPoint.y > y - height/2){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void Draw(Canvas c, int ViewWidth, int ViewHeight){
