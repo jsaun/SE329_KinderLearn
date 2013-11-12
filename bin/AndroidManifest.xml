@@ -47,7 +47,7 @@
 		</activity>
 		
 		
-		<!-- not using these 2 activities -->
+		<!-- not using these 2 activities. -->
         <activity
             android:name="com.se.kinderlearn.core.ChooseGradeActivity"
             android:label="@string/title_activity_choose_grade" >
