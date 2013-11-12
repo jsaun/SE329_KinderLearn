@@ -1,14 +1,14 @@
+// not using this class for now
+
 package com.se.kinderlearn.core;
 
-import com.se.kinderlearn.R;
-import com.se.kinderlearn.R.layout;
-import com.se.kinderlearn.R.menu;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+
+import com.se.kinderlearn.R;
 
 public class ChooseGradeActivity extends Activity {
 

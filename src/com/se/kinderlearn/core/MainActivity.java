@@ -1,62 +1,124 @@
 package com.se.kinderlearn.core;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
+
+
+/**
+ * Changed the structure of the main activity class
+ * Using a alert dialog for user to choose game
+ */
 import android.app.Activity;
-import android.app.FragmentTransaction;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.se.kinderlearn.R;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
+
+	private Button play, help, highScores, option;
+
+	private String[] gradeLevels = { "Kinderlearn", "Grade1", "Grade2",
+			"Grade3", "Grade4", "Grade5", "Grade6" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// No Action Bar
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
+		play = (Button) findViewById(R.id.main_start_game);
+		help = (Button) findViewById(R.id.help);
+		highScores = (Button) findViewById(R.id.high_score);
+		option = (Button) findViewById(R.id.options);
+
+		play.setOnClickListener(this);
+		help.setOnClickListener(this);
+		highScores.setOnClickListener(this);
+		option.setOnClickListener(this);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	public void onClick(View view) {
+		if (view.getId() == R.id.main_start_game) {
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+			builder.setTitle("Choose a Grade").setSingleChoiceItems(
+					gradeLevels, 0, new DialogInterface.OnClickListener() 
+					{
+						public void onClick(DialogInterface dialog,int gradeLevel) 
+						{
+							dialog.dismiss();
+							startGame(gradeLevel);
+						}
+					});
+			
+			AlertDialog ad = builder.create();
+			ad.show();
+
+		}
+
+		else if (view.getId() == R.id.help) {
+            // go to help page
+			Intent help = new Intent(this, Help.class);
+			this.startActivity(help);
+
+		}
+
+		else if (view.getId() == R.id.high_score) {
+            //go to high score page
+			Intent high = new Intent(this, HighScores.class);
+			this.startActivity(high);
+
+		} else if (view.getId() == R.id.options) {
+            //go to option page
+			Intent op = new Intent(this, OptionsActivity.class);
+			this.startActivity(op);
+
+		}
 	}
+
 	
-	public void startChooseGrade(View v){
-		Intent intent = new Intent(this, ChooseGradeActivity.class);
-		startActivity(intent);
+	/**
+	 * This method reads the user input grade level and start the game
+	 * @param grade
+	 *        the level of difficulty of the game
+	 *    
+	 */
+	private void startGame(int grade) {
+		
+		if (grade == 0){
+			Intent play = new Intent(this, GameActivity.class);
+			this.startActivity(play);
+		}
+		
+		else if (grade == 1){
+			Intent play = new Intent(this, SpaceInvadersActivity.class);
+			this.startActivity(play);
+		}
+		
+		else if (grade == 2){
+			
+		}
+		
+		else if (grade == 3){
+			
+		}
+		
+		else if (grade == 4){
+			
+		}
+		else if (grade == 5){
+			
+		}
+		
+		else if (grade == 6){
+			
+		}
+		
+		
 	}
-	
-	public void startStats(View v){
-		Intent intent = new Intent(this, StatsActivity.class);
-		startActivity(intent);
-	}
-	
-	public void startOptions(View v){
-		Intent intent = new Intent(this, OptionsActivity.class);
-		startActivity(intent);
-	}
-	
+
 }

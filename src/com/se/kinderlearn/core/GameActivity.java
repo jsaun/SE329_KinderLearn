@@ -17,6 +17,10 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.se.kinderlearn.R;
 
+
+
+
+
 public class GameActivity extends Activity {
 
 	TextView	textCounter;
@@ -119,11 +123,11 @@ public class GameActivity extends Activity {
 		@Override
 		public void run() {
 			Random oneRand = new Random();
-			int one = oneRand.nextInt() % 100;
+			int one = oneRand.nextInt() % 10  +5;
 			numOne.setText("" + one);
 
 			Random twoRand = new Random();
-			int two = twoRand.nextInt() % 100;
+			int two = twoRand.nextInt() % 5;
 			numTwo.setText("" + two);
 
 			if (one % 2 == 0) {

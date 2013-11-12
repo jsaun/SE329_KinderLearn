@@ -1,4 +1,3 @@
-SE329_KinderLearn
-=================
+Kinderlearn is a Android Math Application to help children learn math!
 
-SE 329 KinderLearn Android Activity
+--- SE 329 Project
