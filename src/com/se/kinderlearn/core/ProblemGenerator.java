@@ -14,7 +14,7 @@ public class ProblemGenerator {
 		ArrayList<Problem> reList = new ArrayList<Problem>();
 		Random generator = new Random();
 		for(int i = 0; i < n; i++){
-			if(grade.equals("k")){
+			if(grade.equals("0")){
 				int first = generator.nextInt(4);
 				int second = generator.nextInt(4);
 				reList.add(new Problem(new String("" + first + " + " + second), first + second));

@@ -22,10 +22,10 @@ public class SpaceInvadersActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_space_invaders);
 		myIntent = getIntent();
-        String grade = myIntent.getStringExtra("grade");
+        int grade = myIntent.getIntExtra("grade", 0);
         v = (SpaceInvadersView) findViewById(R.id.space_invaders);
         t = v.getThread();
-        t.doStart();
+        t.doStart(grade);
 
 	}
 

@@ -39,6 +39,7 @@ boolean run;
 		private long lastTime;
 		private Paint linePaint;
 		private SurfaceHolder mSurfaceHolder;
+		private ProblemGenerator gen;
 		
 		private ArrayList<Enemy> enemies;
 		private Enemy testEnemy;
@@ -57,14 +58,15 @@ boolean run;
 			linePaint.setAntiAlias(true);
 			linePaint.setARGB(255,0,255,0);
 			run = true;
-			testEnemy = new Enemy(new Problem("4 + 5", 9), asteroid, 100, 100, 5, getHeight());
+			testEnemy = new Enemy(new Problem("4 + 5", 9), asteroid, explosion, 100, 100, 5, getHeight());
 			enemies = new ArrayList<Enemy>();
 			enemies.add(testEnemy);
 		}
 		
-		public void doStart(){
+		public void doStart(int grade){
 			synchronized(mSurfaceHolder){
 				lastTime = Calendar.getInstance().getTimeInMillis();
+				gen = new ProblemGenerator("" + grade);
 			}
 		}
 		
@@ -103,7 +105,7 @@ boolean run;
 			for(int i = 0; i<enemies.size(); i++){
 				boolean kill = enemies.get(i).CheckClick(testPoint);
 				if(kill){
-					System.out.println("kill confirmed");
+					enemies.get(i).Freeze();
 				}
 			}
 		}

@@ -39,10 +39,10 @@ public class DrawableSprite {
 	}
 	
 	public void draw(Canvas c, int ViewWidth, int ViewHeight){
-		int left = x - width/2;
-		int top =  y - height/2;
-		int right = left + width;
-		int bottom = top + height;
+		int left = x - width;
+		int top =  y - height;
+		int right = left + width * 2;
+		int bottom = top + height * 2;
 		myDrawable.setBounds(left, top, right, bottom);
 		myDrawable.draw(c);
 	}
