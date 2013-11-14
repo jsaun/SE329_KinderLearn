@@ -21,17 +21,33 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int expander_open_holo_dark=0x7f020000;
-        public static final int explosion=0x7f020001;
-        public static final int ic_action_search=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int introsign=0x7f020004;
-        public static final int planet_earth_in_space=0x7f020005;
-        public static final int ship=0x7f020006;
+        public static final int astroid=0x7f020000;
+        public static final int expander_open_holo_dark=0x7f020001;
+        public static final int explosion=0x7f020002;
+        public static final int ic_action_search=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int introsign=0x7f020005;
+        public static final int planet_earth_in_space=0x7f020006;
+        public static final int right=0x7f020007;
+        public static final int ship=0x7f020008;
+        public static final int wrong=0x7f020009;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001c;
+        public static final int action_settings=0x7f08002c;
+        public static final int answer=0x7f08001a;
         public static final int answer_detail=0x7f08000f;
+        public static final int button_0=0x7f080025;
+        public static final int button_1=0x7f080022;
+        public static final int button_2=0x7f080023;
+        public static final int button_3=0x7f080024;
+        public static final int button_4=0x7f08001f;
+        public static final int button_5=0x7f080020;
+        public static final int button_6=0x7f080021;
+        public static final int button_7=0x7f08001c;
+        public static final int button_8=0x7f08001d;
+        public static final int button_9=0x7f08001e;
+        public static final int button_c=0x7f080026;
+        public static final int button_enter=0x7f080027;
         public static final int fifth_grade=0x7f080007;
         public static final int first_grade=0x7f080003;
         public static final int fourth_grade=0x7f080006;
@@ -44,19 +60,22 @@ public final class R {
         public static final int kindergarten=0x7f080002;
         public static final int main_start_game=0x7f080014;
         public static final int main_start_game_1=0x7f080000;
-        public static final int menu_settings=0x7f08001b;
+        public static final int menu_settings=0x7f08002b;
         public static final int new_question=0x7f08000e;
         public static final int num_one=0x7f08000a;
         public static final int num_two=0x7f08000b;
         public static final int operator=0x7f08000c;
         public static final int operators=0x7f080010;
-        public static final int option_check=0x7f080018;
+        public static final int option_check=0x7f080028;
         public static final int options=0x7f080015;
+        public static final int problem=0x7f080019;
+        public static final int result=0x7f08001b;
+        public static final int score=0x7f080018;
         public static final int second_grade=0x7f080004;
         public static final int sixth_grade=0x7f080008;
-        public static final int space_invaders=0x7f080019;
+        public static final int space_invaders=0x7f080029;
         public static final int start_game_2=0x7f080001;
-        public static final int text=0x7f08001a;
+        public static final int text=0x7f08002a;
         public static final int third_grade=0x7f080005;
         public static final int user_answer=0x7f08000d;
     }
@@ -67,8 +86,9 @@ public final class R {
         public static final int activity_help=0x7f030003;
         public static final int activity_high_score=0x7f030004;
         public static final int activity_main=0x7f030005;
-        public static final int activity_options=0x7f030006;
-        public static final int activity_space_invaders=0x7f030007;
+        public static final int activity_math_game=0x7f030006;
+        public static final int activity_options=0x7f030007;
+        public static final int activity_space_invaders=0x7f030008;
     }
     public static final class menu {
         public static final int activity_choose_game=0x7f070000;
