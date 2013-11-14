@@ -46,6 +46,9 @@
 		<activity android:name="com.se.kinderlearn.core.HighScores" >
 		</activity>
 		
+		<activity android:name="com.se.kinderlearn.core.MathGameActivity" >
+            
+        </activity>
 		
 		<!-- not using these 2 activities. -->
         <activity

@@ -92,7 +92,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void startGame(int grade) {
 		
 		if (grade == 0){
-			Intent play = new Intent(this, SpaceInvadersActivity.class);
+			Intent play = new Intent(this, MathGameActivity.class);
 			play.putExtra("grade", 0);
 			this.startActivity(play);
 		}
