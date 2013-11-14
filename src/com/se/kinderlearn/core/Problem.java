@@ -6,6 +6,7 @@ public class Problem {
 	private String expression;
 	private int answer;
 	private int[] possibleAnswers;
+	private int answerIndex;
 	
 	public Problem(String ex, int ans){
 		this.expression = ex;
@@ -33,21 +34,25 @@ public class Problem {
 			possibleAnswers[1] = fake[0];
 			possibleAnswers[2] = fake[1];
 			possibleAnswers[3] = fake[2];
+			answerIndex = 0;
 		} else if(pos == 1){
 			possibleAnswers[1] = this.answer;
 			possibleAnswers[0] = fake[0];
 			possibleAnswers[2] = fake[1];
 			possibleAnswers[3] = fake[2];
+			answerIndex = 1;
 		} else if(pos == 2){
 			possibleAnswers[2] = this.answer;
 			possibleAnswers[1] = fake[0];
 			possibleAnswers[0] = fake[1];
 			possibleAnswers[3] = fake[2];
+			answerIndex = 2;
 		} else {
 			possibleAnswers[3] = this.answer;
 			possibleAnswers[1] = fake[0];
 			possibleAnswers[2] = fake[1];
 			possibleAnswers[0] = fake[2];
+			answerIndex = 3;
 		}
 	}
 
@@ -59,12 +64,19 @@ public class Problem {
 		return answer;
 	}
 	
-	public int[] getPossibleAnswers(){
-		return possibleAnswers;
+	public CharSequence[] getPossibleAnswers(){
+		CharSequence retVal[] = new CharSequence[4];
+		for(int i = 0; i < 4; i++){
+			retVal[i] = "" +  possibleAnswers[i];
+		}
+		return retVal;
 	}
 	
 	public boolean checkAnswer(int ans){
 		return ans == this.answer;
 	}
 	
+	public int getAnswerIndex(){
+		return answerIndex;
+	}
 }

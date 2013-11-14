@@ -1,5 +1,8 @@
 package com.se.kinderlearn.core;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -30,7 +33,11 @@ public class Enemy {
 	boolean Killed = false;
 	long KilledTime = 0;
 	
-	public Enemy(Problem p, Drawable asteroid, Drawable explosion, int X, int Y, int Velocity, int KillBound){
+	
+	AlertDialog.Builder builder;
+	AlertDialog diag;
+	
+	public Enemy(Problem p, Drawable asteroid, Drawable explosion, int X, int Y, int Velocity, int KillBound, Context context){
 		x = X;
 		y = Y;
 		ship = new DrawableSprite(asteroid, X, Y);
@@ -51,6 +58,22 @@ public class Enemy {
 		height = ship.getSize().y;
 		velocity = Velocity;
 		killBound = KillBound;
+		
+		builder = new AlertDialog.Builder(context);
+		builder.setTitle(problemStr).setSingleChoiceItems(
+				p.getPossibleAnswers(), 0, new DialogInterface.OnClickListener() 
+				{
+					public void onClick(DialogInterface dialog, int answer) 
+					{
+						dialog.dismiss();
+						if (answer == mProblem.getAnswerIndex()){
+							Kill();
+						}
+					}
+				});
+		
+		diag = builder.create();
+
 	}
 	
 	public void Update(long time){
@@ -68,6 +91,9 @@ public class Enemy {
 				if(FrozenTime > 3000){
 					Frozen = false;
 					FrozenTime = 0;
+					if(diag.isShowing()){
+						diag.dismiss();
+					}
 				}
 			}
 		}
@@ -79,6 +105,7 @@ public class Enemy {
 	
 	public void Freeze(){
 		Frozen = true;
+		diag.show();
 	}
 	
 	public void Kill(){

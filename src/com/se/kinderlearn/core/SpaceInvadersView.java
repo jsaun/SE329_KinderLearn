@@ -58,7 +58,7 @@ boolean run;
 			linePaint.setAntiAlias(true);
 			linePaint.setARGB(255,0,255,0);
 			run = true;
-			testEnemy = new Enemy(new Problem("4 + 5", 9), asteroid, explosion, 100, 100, 5, getHeight());
+			testEnemy = new Enemy(new Problem("4 + 5", 9), asteroid, explosion, 100, 100, 5, getHeight(), context);
 			enemies = new ArrayList<Enemy>();
 			enemies.add(testEnemy);
 		}
