@@ -1,5 +1,7 @@
 package com.se.kinderlearn.core;
 
+import com.se.kinderlearn.core.SpaceInvadersView.SpaceInvadersThread;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,7 +39,15 @@ public class Enemy {
 	AlertDialog.Builder builder;
 	AlertDialog diag;
 	
-	public Enemy(Problem p, Drawable asteroid, Drawable explosion, int X, int Y, int Velocity, int KillBound, Context context){
+	SpaceInvadersThread thread;
+	
+	static Context context;
+	
+	static void setContext(Context c){
+		context = c;
+	}
+	
+	public Enemy(Problem p, Drawable asteroid, Drawable explosion, int X, int Y, int Velocity, int KillBound, SpaceInvadersThread t){
 		x = X;
 		y = Y;
 		ship = new DrawableSprite(asteroid, X, Y);
@@ -73,6 +83,7 @@ public class Enemy {
 				});
 		
 		diag = builder.create();
+		thread = t;
 
 	}
 	
@@ -83,7 +94,7 @@ public class Enemy {
 				ship.y = y;
 				explosion.y = y;
 				if(ship.y > killBound){
-					//Player loses a life
+					thread.RemoveLife(this);
 				}
 			}
 			else if(FrozenTime < 3000){
@@ -110,6 +121,7 @@ public class Enemy {
 	
 	public void Kill(){
 		Killed = true;
+		thread.tickScore();
 	}
 	
 	public boolean CheckClick(Point testPoint){
@@ -128,6 +140,11 @@ public class Enemy {
 		}
 		else if(KilledTime < 750){
 			explosion.draw(c, ViewWidth, ViewHeight);
+			thread.RequestFx(this);
+		}
+		else
+		{
+			thread.RequestRemove(this);
 		}
 	}
 	

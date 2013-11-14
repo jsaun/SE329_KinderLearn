@@ -2,18 +2,22 @@ package com.se.kinderlearn.core;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import com.se.kinderlearn.R;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.format.Time;
@@ -24,25 +28,44 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 public class SpaceInvadersView extends SurfaceView implements SurfaceHolder.Callback {
+
 boolean run;
 
 	public class SpaceInvadersThread extends Thread{		
 		private Bitmap backgroundImage;
 		private DrawableSprite ship;
-		private Drawable explosion;
-		private Drawable asteroid;
+		public Drawable explosion;
+		public Drawable asteroid;
 		private Handler mHandler;
 		private long lastTime;
 		private Paint linePaint;
+		private Paint textPaint;
 		private SurfaceHolder mSurfaceHolder;
-		private ProblemGenerator gen;
+		public ProblemGenerator gen;
 		
-		private ArrayList<Enemy> enemies;
+		private SpaceInvadersActivity activity;
+		
+		public ArrayList<Enemy> enemies;
 		private Enemy testEnemy;
+		
+		private ArrayList<Enemy> fxPoints;
+		
+		private int lives = 3;
+		private int score = 0;
+		
+		Context c;
+		
+		TextView v;
+		
+		int enemyCountStart = 3;
+		int liveEnemies = 0;
+		int enemiesThisRound;
+		int round = 0;
 		
 		public SpaceInvadersThread(SurfaceHolder surfaceHolder, Context context,
                 Handler handler){
@@ -57,26 +80,76 @@ boolean run;
 			linePaint = new Paint();
 			linePaint.setAntiAlias(true);
 			linePaint.setARGB(255,0,255,0);
-			run = true;
-			testEnemy = new Enemy(new Problem("4 + 5", 9), asteroid, explosion, 100, 100, 5, getHeight(), context);
+			
+			textPaint = new Paint();
+			textPaint.setTextAlign(Align.RIGHT);
+			textPaint.setTextSize(32);
+			textPaint.setARGB(255, 255, 255, 255);
+			
+			c = context;
+			fxPoints = new ArrayList<Enemy>();
 			enemies = new ArrayList<Enemy>();
-			enemies.add(testEnemy);
+			Enemy.setContext(c);
 		}
 		
-		public void doStart(int grade){
+		@Override
+		public void start(){
+			run = true;
+			super.start();
+		}
+		
+		public void tickScore(){
+			score += 100;
+		}
+		
+		public void doStart(int grade, SpaceInvadersActivity a){
 			synchronized(mSurfaceHolder){
 				lastTime = Calendar.getInstance().getTimeInMillis();
 				gen = new ProblemGenerator("" + grade);
+				activity = a;
 			}
+		}
+		
+		public void RequestRemove(Enemy toRemove){
+			enemies.remove(toRemove);
+			liveEnemies--;
+			fxPoints.remove(toRemove);
+		}
+		
+		public void RemoveLife(Enemy toRemove){
+			lives--;
+			if(lives == 0){
+				  Message msg = mHandler.obtainMessage();
+                  Bundle b = new Bundle();
+                  b.putString("text", "Game Over");
+                  b.putInt("viz", View.VISIBLE);
+                  msg.setData(b);
+                  mHandler.sendMessage(msg);
+                  run = false;
+			}
+			RequestRemove(toRemove);
+		}
+		
+		public void RequestFx(Enemy e){
+			fxPoints.add(e);
 		}
 		
 		public void run(){
 			while (run) {
+				if(liveEnemies == 0){
+					round++;
+					activity.spawnEnemies(enemyCountStart * round);
+					liveEnemies = enemyCountStart * round;
+				}
+				
+				
 				long time = Calendar.getInstance().getTimeInMillis() - lastTime;
 				lastTime = Calendar.getInstance().getTimeInMillis();
                 Canvas c = null;
                 ship.setPosition(getWidth()/2, getHeight() - ship.getSize().y / 2);
-                testEnemy.Update(time);
+                for(int i = 0; i < enemies.size(); i++){
+                	enemies.get(i).Update(time);
+                }
                 try {
                     c = mSurfaceHolder.lockCanvas(null);
                     synchronized (mSurfaceHolder) {
@@ -97,7 +170,15 @@ boolean run;
 			if(run){
 			canvas.drawBitmap(backgroundImage, null, new Rect(0,0, getWidth(), getHeight()), null);
 			ship.draw(canvas, getWidth(), getHeight());
-			testEnemy.Draw(canvas, getWidth(), getHeight());
+			for(int i = 0; i < enemies.size(); i++){
+				enemies.get(i).Draw(canvas, getWidth(), getHeight());
+			}
+				for(int i = 0; i < fxPoints.size(); i++){
+					canvas.drawLine(ship.x, ship.y - ship.height, fxPoints.get(i).x, fxPoints.get(i).y, linePaint);
+				}
+			fxPoints.clear();
+			canvas.drawText("Score: " + score, getWidth(), 32, textPaint);
+			canvas.drawText("Lives: " + lives, getWidth(), 64, textPaint);
 			}
 		}
 		
@@ -122,7 +203,7 @@ boolean run;
         // register our interest in hearing about changes to our surface
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
-
+        
         // create thread only; it's started in surfaceCreated()
         thread = new SpaceInvadersThread(holder, context, new Handler() {
             @Override
@@ -144,6 +225,14 @@ boolean run;
 		return null;
 	}
 
+	public void SetTextView(TextView v){
+		mStatusText = v;
+	}
+	
+	public void SetGameOver(){
+		mStatusText.setText("Game Over");
+	}
+	
 	public Rect getSurfaceFrame() {
 		// TODO Auto-generated method stub
 		return null;
@@ -196,7 +285,7 @@ boolean run;
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
-        thread.start();
+	    thread.start();
 	}
 
 	public void surfaceDestroyed(SurfaceHolder holder) {
