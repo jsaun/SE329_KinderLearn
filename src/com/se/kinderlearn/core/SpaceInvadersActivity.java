@@ -41,7 +41,7 @@ public class SpaceInvadersActivity extends Activity {
 			public void run() {
 				Random rand = new Random();
 				for(int i = 0; i < numEnemies; i++){
-					t.enemies.add(new Enemy(t.gen.getProblems(1).get(0), t.asteroid, t.explosion, t.asteroid.getIntrinsicWidth() + rand.nextInt(v.getWidth() - 2 * t.asteroid.getIntrinsicWidth()), -1 * rand.nextInt(500), 1 + rand.nextInt(4), v.getHeight(), t));
+					t.enemies.add(new Enemy(t.gen.getProblems(1).get(0), t.asteroid, t.explosion, t.asteroid.getIntrinsicWidth() + rand.nextInt(v.getWidth() - 2 * t.asteroid.getIntrinsicWidth()), -1 * rand.nextInt(50),Math.max(2, rand.nextInt(5)), v.getHeight(), t));
 				}
 			}
 		});
