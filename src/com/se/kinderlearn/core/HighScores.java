@@ -16,6 +16,9 @@ public class HighScores extends Activity {
 
 		TextView display = (TextView) findViewById(R.id.high_scores_list);
 		
+		DatabaseHandler h = new DatabaseHandler(getApplicationContext());
+		h.getHighScores("1");
+		
 		// get high scores that is stored in game play
 	    // formate the score 
 		// list top 10
