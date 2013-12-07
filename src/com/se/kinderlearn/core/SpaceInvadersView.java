@@ -67,6 +67,8 @@ boolean run;
 		int enemiesThisRound;
 		int round = 0;
 		
+		DatabaseHandler dbHandler;
+		
 		public SpaceInvadersThread(SurfaceHolder surfaceHolder, Context context,
                 Handler handler){
 			mSurfaceHolder = surfaceHolder;
@@ -90,6 +92,7 @@ boolean run;
 			fxPoints = new ArrayList<Enemy>();
 			enemies = new ArrayList<Enemy>();
 			Enemy.setContext(c);
+			dbHandler = new DatabaseHandler(c);
 		}
 		
 		@Override
@@ -126,6 +129,7 @@ boolean run;
                   msg.setData(b);
                   mHandler.sendMessage(msg);
                   run = false;
+                  dbHandler.saveHighScore(score, gen.getGrade());
 			}
 			RequestRemove(toRemove);
 		}

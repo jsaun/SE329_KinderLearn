@@ -10,6 +10,9 @@ public class ProblemGenerator {
 		this.grade = grade;
 	}
 	
+	public String getGrade(){
+		return grade;
+	}
 	public ArrayList<Problem> getProblems(int n){
 		ArrayList<Problem> reList = new ArrayList<Problem>();
 		Random generator = new Random();
