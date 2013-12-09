@@ -46,6 +46,7 @@ boolean run;
 		private Paint linePaint;
 		private Paint textPaint;
 		private SurfaceHolder mSurfaceHolder;
+		private boolean pause = false;
 		public ProblemGenerator gen;
 		
 		private SpaceInvadersActivity activity;
@@ -140,6 +141,11 @@ boolean run;
 		
 		public void run(){
 			while (run) {
+					if(pause){
+						while(pause){
+						yield();
+						}
+					}
 				if(liveEnemies == 0){
 					round++;
 					activity.spawnEnemies(enemyCountStart * round);
@@ -171,7 +177,7 @@ boolean run;
 		}
 		
 		public void doDraw(Canvas canvas){
-			if(run){
+			if(run && canvas!=null){
 			canvas.drawBitmap(backgroundImage, null, new Rect(0,0, getWidth(), getHeight()), null);
 			ship.draw(canvas, getWidth(), getHeight());
 			for(int i = 0; i < enemies.size(); i++){
@@ -289,18 +295,17 @@ boolean run;
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
-	    thread.start();
+		if(!thread.isAlive()){
+		thread.start();
+		}
+		else
+		{
+		thread.pause = false;
+		}
 	}
 
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		try {
-			run = false;
-			thread.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			thread.pause = true;
 	}
 	
 	@Override
