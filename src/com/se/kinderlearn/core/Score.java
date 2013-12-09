@@ -25,20 +25,20 @@ public class Score implements Comparable<Score> {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	
+
 	public int compareTo(Score other) {
 		// equal: 0, greater: -1 ; less: 1
 		if (this.value == other.value)
 			return 0;
-		
+
 		else if (this.value > other.value)
 			return -1;
 		else
 			return 1;
 	}
 
-	public String toString() {
-		return date + " --- " + value;
+	public String output() {
+		return date + " - " + value;
 	}
 
 }

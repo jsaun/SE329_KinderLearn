@@ -7,9 +7,16 @@ package com.se.kinderlearn.core;
  * 
  * !! High Score System has not been set up yet !!
  */
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -51,10 +58,16 @@ public class MathGameActivity extends Activity implements OnClickListener {
 
 	private ImageView resultImageView;
 
+	// addtional variables to get shared data in order to get high score
+	private SharedPreferences scoreSaver;
+	public static final String SAVED_SCORE = "HighScore";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_math_game);
+
+		scoreSaver = getSharedPreferences(SAVED_SCORE, 0);
 
 		// text and image views
 		problemTextView = (TextView) findViewById(R.id.problem);
@@ -92,6 +105,10 @@ public class MathGameActivity extends Activity implements OnClickListener {
 		button_enter.setOnClickListener(this);
 		button_c.setOnClickListener(this);
 
+		if (savedInstanceState != null) {
+			int sc = savedInstanceState.getInt("score");
+			scoreTextView.setText("Score: " + sc);
+		}
 		problemGenerator();
 	}
 
@@ -184,6 +201,90 @@ public class MathGameActivity extends Activity implements OnClickListener {
 			problemTextView.setText(op1 + " + " + op2);
 		}
 
+	}
+
+	/**
+	 * This method is used to set high score value and pass to high score view
+	 */
+
+	private void setHighScore() {
+
+		// get score
+		int sc = getScore();
+
+		// check if valid,ini = 0
+		if (sc > 0) {
+
+			SharedPreferences.Editor scoreBuilder = scoreSaver.edit();
+
+			DateFormat df = new SimpleDateFormat("dd MMMM yyyy");
+
+			String formattedScores = df.format(new Date());
+
+			String scoreBuffer = scoreSaver.getString("highScores", "");
+
+			// check if has scores in retrived data
+			if (scoreBuffer.length() > 0) {
+
+				List<Score> scoreList = new ArrayList<Score>();
+
+				// store each single high score in string array
+				String[] getScoreList = scoreBuffer.split("\\|");
+
+				for (String s : getScoreList) {
+					// get single high score from high score list and add to
+					// score object
+					String[] temp = s.split(" - ");
+					scoreList
+							.add(new Score(temp[0], Integer.parseInt(temp[1])));
+				}
+
+				// after looping through exiting scores, add a new one
+				Score newHihgScore = new Score(formattedScores, sc);
+				scoreList.add(newHihgScore);
+				Collections.sort(scoreList);
+
+				StringBuilder sb = new StringBuilder("");
+				for (int i = 0; i < scoreList.size(); i++) {
+					if (i >= 10)
+						break;
+					if (i > 0)
+						sb.append("|");
+					sb.append(scoreList.get(i).output());
+				}
+
+				scoreBuilder.putString("highScores", sb.toString());
+				scoreBuilder.commit();
+			}
+
+			// not high score found
+			else {
+				scoreBuilder.putString("highScores", "" + formattedScores
+						+ " - " + sc);
+				scoreBuilder.commit();
+			}
+
+		}
+
+	}
+
+	// save high score when activity is destroyed
+	protected void onDestroy() {
+		setHighScore();
+		super.onDestroy();
+	}
+
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		// get score
+		int sc = getScore();
+		savedInstanceState.putInt("score", sc);
+		super.onSaveInstanceState(savedInstanceState);
+	}
+
+	private int getScore() {
+		String scoreStr = scoreTextView.getText().toString();
+		return Integer
+				.parseInt(scoreStr.substring(scoreStr.lastIndexOf(" ") + 1));
 	}
 
 }

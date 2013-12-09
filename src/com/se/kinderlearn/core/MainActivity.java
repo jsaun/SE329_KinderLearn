@@ -1,7 +1,5 @@
 package com.se.kinderlearn.core;
 
-
-
 /**
  * Changed the structure of the main activity class
  * Using a alert dialog for user to choose game
@@ -11,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,9 +22,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private String[] gradeLevels = { "Kinderlearn", "Grade1", "Grade2",
 			"Grade3", "Grade4", "Grade5", "Grade6" };
- 
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,97 +39,99 @@ public class MainActivity extends Activity implements OnClickListener {
 		option.setOnClickListener(this);
 	}
 
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
 	public void onClick(View view) {
 		if (view.getId() == R.id.main_start_game) {
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 			builder.setTitle("Choose a Grade").setSingleChoiceItems(
-					gradeLevels, 0, new DialogInterface.OnClickListener() 
-					{
-						public void onClick(DialogInterface dialog,int gradeLevel) 
-						{
+					gradeLevels, 0, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int gradeLevel) {
 							dialog.dismiss();
 							startGame(gradeLevel);
 						}
 					});
-			
+
 			AlertDialog ad = builder.create();
 			ad.show();
 
 		}
 
 		else if (view.getId() == R.id.help) {
-            // go to help page
+			// go to help page
 			Intent help = new Intent(this, Help.class);
 			this.startActivity(help);
 
 		}
 
 		else if (view.getId() == R.id.high_score) {
-            //go to high score page
+			// go to high score page
 			Intent high = new Intent(this, HighScores.class);
 			this.startActivity(high);
 
 		} else if (view.getId() == R.id.options) {
-            //go to option page
+			// go to option page
 			Intent op = new Intent(this, OptionsActivity.class);
 			this.startActivity(op);
 
 		}
 	}
 
-	
 	/**
 	 * This method reads the user input grade level and start the game
+	 * 
 	 * @param grade
-	 *        the level of difficulty of the game
-	 *    
+	 *            the level of difficulty of the game
+	 * 
 	 */
 	private void startGame(int grade) {
-		
-		if (grade == 0){
+
+		if (grade == 0) {
 			Intent play = new Intent(this, MathGameActivity.class);
 			play.putExtra("grade", 0);
 			this.startActivity(play);
 		}
-		
-		else if (grade == 1){
+
+		else if (grade == 1) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 1);
 			this.startActivity(play);
 		}
-		
-		else if (grade == 2){
+
+		else if (grade == 2) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 2);
 			this.startActivity(play);
 		}
-		
-		else if (grade == 3){
+
+		else if (grade == 3) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 3);
 			this.startActivity(play);
 		}
-		
-		else if (grade == 4){
+
+		else if (grade == 4) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 4);
 			this.startActivity(play);
-		}
-		else if (grade == 5){
+		} else if (grade == 5) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 5);
 			this.startActivity(play);
 		}
-		
-		else if (grade == 6){
+
+		else if (grade == 6) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 6);
 			this.startActivity(play);
 		}
-		
-		
+
 	}
 
 }

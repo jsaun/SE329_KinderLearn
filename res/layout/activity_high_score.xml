@@ -15,7 +15,7 @@
 			android:layout_height="wrap_content"
 			android:layout_centerHorizontal="true"
 			android:contentDescription="operators"
-			android:padding="10dp"
+			android:padding="1dp"
 			android:src="@drawable/introsign" />
     
     
@@ -37,10 +37,10 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/intro"
 			android:layout_centerHorizontal="true"
-			android:padding="15dp"
+			android:padding="10dp"
 			android:text="HIGH SCORES"
 			android:textColor="#ffffff"
-			android:textSize="24sp"
+			android:textSize="20sp"
 			android:textStyle="bold" />
 
 	<TextView
@@ -54,4 +54,5 @@
 			android:textColor="#ffffff"
 			android:textSize="20sp"
 			android:textStyle="bold" />
+	
    </RelativeLayout>
