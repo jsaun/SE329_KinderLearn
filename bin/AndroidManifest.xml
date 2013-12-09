@@ -46,21 +46,19 @@
 		<activity android:name="com.se.kinderlearn.core.HighScores" >
 		</activity>
 		
-		<activity android:name="com.se.kinderlearn.core.MathGameActivity" >
-            
+		<activity android:name="com.se.kinderlearn.core.KinderLearnLevelHighScore" >
+		</activity>
+		
+		<activity android:name="com.se.kinderlearn.core.FirstGradeHighScore" >
+		</activity>
+		
+		<activity android:name="com.se.kinderlearn.core.SecondGradeHighScore" >
+		</activity>
+		
+		<activity android:name="com.se.kinderlearn.core.MathGameActivity" 
+		          android:configChanges="keyboardHidden|orientation|screenSize">         
         </activity>
 		
-		<!-- not using these 2 activities. -->
-        <activity
-            android:name="com.se.kinderlearn.core.ChooseGradeActivity"
-            android:label="@string/title_activity_choose_grade" >
-        </activity>
-        
-        <activity
-            android:name="com.se.kinderlearn.core.ChooseGameActivity"
-            android:label="@string/title_activity_choose_game" >
-        </activity>
-        
     </application>
 
 </manifest>
