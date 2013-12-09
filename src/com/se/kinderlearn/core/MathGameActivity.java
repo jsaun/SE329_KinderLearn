@@ -282,9 +282,11 @@ public class MathGameActivity extends Activity implements OnClickListener {
 	}
 
 	private int getScore() {
-		String scoreStr = scoreTextView.getText().toString();
-		return Integer
-				.parseInt(scoreStr.substring(scoreStr.lastIndexOf(" ") + 1));
+		String sc = scoreTextView.getText().toString();
+
+		int result = Integer.parseInt(sc.substring(7));
+
+		return result;
 	}
 
 }
