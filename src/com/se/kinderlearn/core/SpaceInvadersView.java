@@ -44,6 +44,7 @@ public class SpaceInvadersView extends SurfaceView implements
 		private Paint linePaint;
 		private Paint textPaint;
 		private SurfaceHolder mSurfaceHolder;
+		private boolean pause = false;
 		public ProblemGenerator gen;
 
 		private SpaceInvadersActivity activity;
@@ -140,7 +141,16 @@ public class SpaceInvadersView extends SurfaceView implements
 
 		public void run() {
 			while (run) {
+<<<<<<< HEAD
 				if (liveEnemies == 0) {
+=======
+					if(pause){
+						while(pause){
+						yield();
+						}
+					}
+				if(liveEnemies == 0){
+>>>>>>> upstream/master
 					round++;
 					activity.spawnEnemies(enemyCountStart * round);
 					liveEnemies = enemyCountStart * round;
@@ -148,6 +158,7 @@ public class SpaceInvadersView extends SurfaceView implements
 
 				long time = Calendar.getInstance().getTimeInMillis() - lastTime;
 				lastTime = Calendar.getInstance().getTimeInMillis();
+<<<<<<< HEAD
 				Canvas c = null;
 				ship.setPosition(getWidth() / 2, getHeight() - ship.getSize().y
 						/ 2);
@@ -167,6 +178,35 @@ public class SpaceInvadersView extends SurfaceView implements
 						mSurfaceHolder.unlockCanvasAndPost(c);
 					}
 				}
+=======
+                Canvas c = null;
+                ship.setPosition(getWidth()/2, getHeight() - ship.getSize().y / 2);
+                for(int i = 0; i < enemies.size(); i++){
+                	enemies.get(i).Update(time);
+                }
+                try {
+                    c = mSurfaceHolder.lockCanvas(null);
+                    synchronized (mSurfaceHolder) {
+                    	doDraw(c);
+                    }
+                } finally {
+                    // do this in a finally so that if an exception is thrown
+                    // during the above, we don't leave the Surface in an
+                    // inconsistent state
+                    if (c != null) {
+                        mSurfaceHolder.unlockCanvasAndPost(c);
+                    }
+                }
+            }
+		}
+		
+		public void doDraw(Canvas canvas){
+			if(run && canvas!=null){
+			canvas.drawBitmap(backgroundImage, null, new Rect(0,0, getWidth(), getHeight()), null);
+			ship.draw(canvas, getWidth(), getHeight());
+			for(int i = 0; i < enemies.size(); i++){
+				enemies.get(i).Draw(canvas, getWidth(), getHeight());
+>>>>>>> upstream/master
 			}
 		}
 
@@ -291,6 +331,7 @@ public class SpaceInvadersView extends SurfaceView implements
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
+<<<<<<< HEAD
 		thread.start();
 	}
 
@@ -303,6 +344,19 @@ public class SpaceInvadersView extends SurfaceView implements
 			e.printStackTrace();
 		}
 
+=======
+		if(!thread.isAlive()){
+		thread.start();
+		}
+		else
+		{
+		thread.pause = false;
+		}
+	}
+
+	public void surfaceDestroyed(SurfaceHolder holder) {
+			thread.pause = true;
+>>>>>>> upstream/master
 	}
 
 	@Override
