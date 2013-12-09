@@ -1,13 +1,19 @@
 package com.se.kinderlearn.core;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.se.kinderlearn.R;
 
-public class HighScores extends Activity {
+public class HighScores extends Activity implements OnClickListener {
+
+	private Button kdLevel;
+	private Button firstLevel;
+	private Button secondLevel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -15,27 +21,27 @@ public class HighScores extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_high_score);
 
-		TextView display = (TextView) findViewById(R.id.high_scores_list);
+		kdLevel = (Button) findViewById(R.id.kinderLearn);
+		firstLevel = (Button) findViewById(R.id.firstGrade);
+		secondLevel = (Button) findViewById(R.id.secondGrade);
 
-		// DatabaseHandler h = new DatabaseHandler(getApplicationContext());
-		// h.getHighScores("1");
-
-		// get high scores that is stored in game play
-		// formate the score
-		// list top 10
-		SharedPreferences scoreSaver = getSharedPreferences(
-				MathGameActivity.SAVED_SCORE, 0);
-
-		String[] scoreList = scoreSaver.getString("highScores", "")
-				.split("\\|");
-
-		StringBuilder sb = new StringBuilder("");
-		for (String s : scoreList) {
-			sb.append(s + "\n");
-		}
-
-		display.setText(sb.toString());
+		kdLevel.setOnClickListener(this);
+		firstLevel.setOnClickListener(this);
+		secondLevel.setOnClickListener(this);
 
 	}
 
+	public void onClick(View view) {
+		if (view.getId() == R.id.kinderLearn) {
+			Intent kdlevel = new Intent(this, KinderLearnLevelHighScore.class);
+			this.startActivity(kdlevel);
+		} else if (view.getId() == R.id.firstGrade) {
+			Intent fgrade = new Intent(this, FirstGradeHighScore.class);
+			this.startActivity(fgrade);
+		} else if (view.getId() == R.id.secondGrade) {
+			Intent sgrade = new Intent(this, SecondGradeHighScore.class);
+			this.startActivity(sgrade);
+		}
+
+	}
 }

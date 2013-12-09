@@ -46,6 +46,15 @@
 		<activity android:name="com.se.kinderlearn.core.HighScores" >
 		</activity>
 		
+		<activity android:name="com.se.kinderlearn.core.KinderLearnLevelHighScore" >
+		</activity>
+		
+		<activity android:name="com.se.kinderlearn.core.FirstGradeHighScore" >
+		</activity>
+		
+		<activity android:name="com.se.kinderlearn.core.SecondGradeHighScore" >
+		</activity>
+		
 		<activity android:name="com.se.kinderlearn.core.MathGameActivity" 
 		          android:configChanges="keyboardHidden|orientation|screenSize">         
         </activity>
