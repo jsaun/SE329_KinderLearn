@@ -37,6 +37,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		help.setOnClickListener(this);
 		highScores.setOnClickListener(this);
 		option.setOnClickListener(this);
+
+		// sound setup
+		SoundManager.getInstance();
+		SoundManager.initSounds(this);
+		SoundManager.loadSounds();
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,12 +66,17 @@ public class MainActivity extends Activity implements OnClickListener {
 			AlertDialog ad = builder.create();
 			ad.show();
 
+			// sound effect
+			SoundManager.playSound(1, 1f);
+
 		}
 
 		else if (view.getId() == R.id.help) {
 			// go to help page
 			Intent help = new Intent(this, Help.class);
 			this.startActivity(help);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 
 		}
 
@@ -74,11 +84,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			// go to high score page
 			Intent high = new Intent(this, HighScores.class);
 			this.startActivity(high);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 
 		} else if (view.getId() == R.id.options) {
 			// go to option page
 			Intent op = new Intent(this, OptionsActivity.class);
 			this.startActivity(op);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 
 		}
 	}
@@ -96,40 +110,55 @@ public class MainActivity extends Activity implements OnClickListener {
 			Intent play = new Intent(this, MathGameActivity.class);
 			play.putExtra("grade", 0);
 			this.startActivity(play);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 		}
 
 		else if (grade == 1) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 1);
 			this.startActivity(play);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 		}
 
 		else if (grade == 2) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 2);
 			this.startActivity(play);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 		}
 
 		else if (grade == 3) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 3);
 			this.startActivity(play);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 		}
 
 		else if (grade == 4) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 4);
 			this.startActivity(play);
+			// sound effect
+			SoundManager.playSound(1, 1f);
+
 		} else if (grade == 5) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 5);
 			this.startActivity(play);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 		}
 
 		else if (grade == 6) {
 			Intent play = new Intent(this, SpaceInvadersActivity.class);
 			play.putExtra("grade", 6);
 			this.startActivity(play);
+			// sound effect
+			SoundManager.playSound(1, 1f);
 		}
 
 	}
