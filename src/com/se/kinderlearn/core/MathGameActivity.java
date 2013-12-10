@@ -146,15 +146,11 @@ public class MathGameActivity extends Activity implements OnClickListener {
 					scoreTextView.setText("Score: " + score);
 					resultImageView.setImageResource(R.drawable.right);
 					resultImageView.setVisibility(View.VISIBLE);
-					// sound effect
-					SoundManager.playSound(1, 1f);
 				} else {
 					score = 0;
 					scoreTextView.setText("Score: " + score);
 					resultImageView.setImageResource(R.drawable.wrong);
 					resultImageView.setVisibility(View.VISIBLE);
-					// sound effect
-					SoundManager.playSound(1, 1f);
 				}
 				problemGenerator();
 			}
@@ -166,15 +162,10 @@ public class MathGameActivity extends Activity implements OnClickListener {
 		else {
 			resultImageView.setVisibility(View.INVISIBLE);
 			int number = Integer.parseInt(view.getTag().toString());
-			if (answerTextView.getText().toString().endsWith("?")) {
+			if (answerTextView.getText().toString().endsWith("?"))
 				answerTextView.setText("= " + number);
-				// sound effect
-				SoundManager.playSound(1, 1f);
-			} else {
+			else
 				answerTextView.append("" + number);
-				// sound effect
-				SoundManager.playSound(1, 1f);
-			}
 		}
 	}
 
