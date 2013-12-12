@@ -15,18 +15,18 @@ public class SecondGradeHighScore extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_second_grade_score);
+		//setContentView(R.layout.activity_second_grade_score);
 		
-		TextView display = (TextView) findViewById(R.id.high_scores_list);
+		//TextView display = (TextView) findViewById(R.id.high_scores_list);
 
 		SharedPreferences scoreSaver = getSharedPreferences(
 				SpaceInvadersActivity.SPACE_INVADER_SAVED_SCORE, 0);
 		
-		/*drawView = new DrawGraph(this, scoreSaver);
+		drawView = new DrawGraph(this, scoreSaver);
         drawView.setBackgroundColor(R.drawable.planet_earth_in_space);
         setContentView(drawView);
         
-		String[] scoreList = scoreSaver.getString("spaceInvaderHighScore", "")
+		/*String[] scoreList = scoreSaver.getString("spaceInvaderHighScore", "")
 				.split("\\|");
 
 		StringBuilder sb = new StringBuilder("");
