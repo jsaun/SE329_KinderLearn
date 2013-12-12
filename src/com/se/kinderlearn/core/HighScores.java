@@ -28,6 +28,11 @@ public class HighScores extends Activity implements OnClickListener {
 		kdLevel.setOnClickListener(this);
 		firstLevel.setOnClickListener(this);
 		secondLevel.setOnClickListener(this);
+		
+		//sound set up
+		SoundManager.getInstance();
+		SoundManager.initSounds(this);
+		SoundManager.loadSounds();
 
 	}
 
@@ -35,12 +40,21 @@ public class HighScores extends Activity implements OnClickListener {
 		if (view.getId() == R.id.kinderLearn) {
 			Intent kdlevel = new Intent(this, KinderLearnLevelHighScore.class);
 			this.startActivity(kdlevel);
+			//sound effect
+			SoundManager.playSound(4, 2f);
+			
 		} else if (view.getId() == R.id.firstGrade) {
 			Intent fgrade = new Intent(this, FirstGradeHighScore.class);
 			this.startActivity(fgrade);
+			//sound effect
+			SoundManager.playSound(4, 2f);
+			
 		} else if (view.getId() == R.id.secondGrade) {
 			Intent sgrade = new Intent(this, SecondGradeHighScore.class);
 			this.startActivity(sgrade);
+			//sound effect
+			SoundManager.playSound(4, 2f);
+			
 		}
 
 	}

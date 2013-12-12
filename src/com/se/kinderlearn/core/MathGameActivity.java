@@ -110,6 +110,11 @@ public class MathGameActivity extends Activity implements OnClickListener {
 			scoreTextView.setText("Score: " + sc);
 		}
 		problemGenerator();
+		
+		//sound set up
+		SoundManager.getInstance();
+		SoundManager.initSounds(this);
+		SoundManager.loadSounds();
 	}
 
 	public void onClick(View view) {

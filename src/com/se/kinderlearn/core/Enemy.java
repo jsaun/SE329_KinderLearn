@@ -111,6 +111,9 @@ public class Enemy {
 		else{
 			explosion.y = y;
 			KilledTime += time;
+			
+			//sound effect
+			SoundManager.playSound(2, 1f);
 		}
 	}
 	

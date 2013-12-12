@@ -49,6 +49,12 @@ public class GameActivity extends Activity {
 		userAnswer = (EditText) findViewById(R.id.user_answer);
 		next = (Button) findViewById(R.id.new_question);
 
+		//sound set up
+		SoundManager.getInstance();
+		SoundManager.initSounds(this);
+		SoundManager.loadSounds();
+		
+		
 		MyCount countdown = new MyCount(6000, 1000);
 		usersScore = 0;
 		countdown.start();
